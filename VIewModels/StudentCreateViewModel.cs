@@ -10,7 +10,7 @@ namespace StudentManagement.ViewModels
 {
     public class StudentCreateViewModel
     {
-      
+
 
         [Required(ErrorMessage = "请输入名字"), MaxLength(50, ErrorMessage = "名字的长度不能超过50个字符")]
         [Display(Name = "名字")]
@@ -25,7 +25,7 @@ namespace StudentManagement.ViewModels
         [Required(ErrorMessage = "请输入邮箱地址")]
         public string Email { get; set; }
 
-        [Display(Name="图片")]
+        [Display(Name = "图片")]
         public List<IFormFile> Photos { get; set; }
 
     }

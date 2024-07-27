@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Middlewares
 {
-    public class CustomIdentityErrorDescriber:IdentityErrorDescriber
+    public class CustomIdentityErrorDescriber : IdentityErrorDescriber
     {
 
 

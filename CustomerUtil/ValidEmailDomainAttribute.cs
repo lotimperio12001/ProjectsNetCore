@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.CustomerUtil
 {
-    public class ValidEmailDomainAttribute:ValidationAttribute
+    public class ValidEmailDomainAttribute : ValidationAttribute
     {
 
         private readonly string allowedDomain;

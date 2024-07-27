@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.Controllers
 {
-    public class ErrorController:Controller
+    public class ErrorController : Controller
     {
         private ILogger<ErrorController> logger;
 
@@ -52,7 +52,7 @@ namespace StudentManagement.Controllers
         [Route("Error")]
         public IActionResult Error()
         {
-         var exceptionHandlerPathFeature=   HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             logger.LogError($"路径:{exceptionHandlerPathFeature.Path},产生了一个错误{exceptionHandlerPathFeature.Error}");
 

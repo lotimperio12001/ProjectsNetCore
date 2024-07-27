@@ -26,13 +26,13 @@ namespace StudentManagement.Controllers
 
         //使用构造函数注入的方式注入IStudentRepository
         public HomeController(IStudentRepository studentRepository, IWebHostEnvironment hostingEnvironment,
-            ILogger<HomeController> logger,DataProtectionPurposeStrings dataProtectionPurposeStrings,IDataProtectionProvider dataProtectionProvider)
+            ILogger<HomeController> logger, DataProtectionPurposeStrings dataProtectionPurposeStrings, IDataProtectionProvider dataProtectionProvider)
         {
             _studentRepository = studentRepository;
             this.hostingEnvironment = hostingEnvironment;
             this.logger = logger;
             dataProtector = dataProtectionProvider.CreateProtector(dataProtectionPurposeStrings.StudentIdRouteValue);
-            
+
         }
 
 
@@ -40,11 +40,12 @@ namespace StudentManagement.Controllers
         public IActionResult Index()
         {
             IEnumerable<Student> students = _studentRepository.GetAllStudents().
-                Select(s=>{
-                //加密ID值并存储在EncryptedId属性中
-                s.EncryptedId = dataProtector.Protect(s.Id.ToString());
-                return s;            
-            });
+                Select(s =>
+                {
+                    //加密ID值并存储在EncryptedId属性中
+                    s.EncryptedId = dataProtector.Protect(s.Id.ToString());
+                    return s;
+                });
 
             return View(students);
 
@@ -66,12 +67,12 @@ namespace StudentManagement.Controllers
             //  throw new Exception("此异常发生在Details视图中");
 
             //使用 Unprotect()方法来解析学生id
-            var decryptedId =   dataProtector.Unprotect(id);
-
-           
+            var decryptedId = dataProtector.Unprotect(id);
 
 
-         var decryptedStudentId= Convert.ToInt32(decryptedId);
+
+
+            var decryptedStudentId = Convert.ToInt32(decryptedId);
 
 
             Student student = _studentRepository.GetStudent(decryptedStudentId);
@@ -106,12 +107,12 @@ namespace StudentManagement.Controllers
 
                 string uniqueFileName = null;
 
-                if (model.Photos!=null&&model.Photos.Count>0)
+                if (model.Photos != null && model.Photos.Count > 0)
                 {
                     uniqueFileName = ProcessUploadedFile(model);
 
                 }
-                       Student newStudent = new Student
+                Student newStudent = new Student
                 {
                     Name = model.Name,
                     Email = model.Email,
@@ -119,7 +120,7 @@ namespace StudentManagement.Controllers
                     PhotoPath = uniqueFileName
                 };
 
-            _studentRepository.Add(newStudent);
+                _studentRepository.Add(newStudent);
                 return RedirectToAction("Details", new { id = newStudent.Id });
             }
             return View();
@@ -134,55 +135,55 @@ namespace StudentManagement.Controllers
         public ViewResult Edit(int id)
         {
             Student student = _studentRepository.GetStudent(id);
-         
 
-                StudentEditVidewModel studentEditVidew = new StudentEditVidewModel
-                {
-                    Id = student.Id,
-                    Name = student.Name,
-                    Email = student.Email,
-                    ClassName = student.ClassName,
-                    ExistingPhotoPath = student.PhotoPath
-                };
 
-                return View(studentEditVidew);         
+            StudentEditVidewModel studentEditVidew = new StudentEditVidewModel
+            {
+                Id = student.Id,
+                Name = student.Name,
+                Email = student.Email,
+                ClassName = student.ClassName,
+                ExistingPhotoPath = student.PhotoPath
+            };
 
-         //   throw new Exception("查询不到这个学生信息");       
+            return View(studentEditVidew);
+
+            //   throw new Exception("查询不到这个学生信息");       
 
 
         }
 
         [HttpPost]
-public  IActionResult Edit(StudentEditVidewModel model)
+        public IActionResult Edit(StudentEditVidewModel model)
         {
 
             //检查提供的数据是否有效，如果没有通过验证，需要重新编辑学生信息
             //这样用户就可以更正并重新提交编辑表单
             if (ModelState.IsValid)
-            {                
+            {
                 Student student = _studentRepository.GetStudent(model.Id);
                 student.Email = model.Email;
                 student.Name = model.Name;
                 student.ClassName = model.ClassName;
 
-                if (model.Photos.Count>0)
+                if (model.Photos.Count > 0)
                 {
 
-                    if (model.ExistingPhotoPath!=null)
+                    if (model.ExistingPhotoPath != null)
                     {
- string filePahth = Path.Combine(hostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
+                        string filePahth = Path.Combine(hostingEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
 
                         System.IO.File.Delete(filePahth);
 
                     }
-                                   
+
                     student.PhotoPath = ProcessUploadedFile(model);
 
                 }
 
 
 
-          Student updateStudent=      _studentRepository.Update(student);
+                Student updateStudent = _studentRepository.Update(student);
 
 
                 return RedirectToAction("Index");
@@ -192,7 +193,7 @@ public  IActionResult Edit(StudentEditVidewModel model)
             return View(model);
 
 
-          
+
         }
 
 
@@ -203,8 +204,8 @@ public  IActionResult Edit(StudentEditVidewModel model)
         /// <returns></returns>
         private string ProcessUploadedFile(StudentCreateViewModel model)
         {
-            
-            
+
+
             string uniqueFileName = null;
 
             if (model.Photos.Count > 0)
@@ -228,12 +229,12 @@ public  IActionResult Edit(StudentEditVidewModel model)
                     }
 
 
-                  
+
                 }
             }
 
 
-            
+
 
             return uniqueFileName;
 

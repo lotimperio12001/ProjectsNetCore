@@ -9,9 +9,9 @@ namespace StudentManagement.Models
     public class SQLStudentRepository : IStudentRepository
     {
         private readonly ILogger logger;
-        private readonly  AppDbContext context;
+        private readonly AppDbContext context;
 
-        public SQLStudentRepository(AppDbContext context,ILogger<SQLStudentRepository> logger)
+        public SQLStudentRepository(AppDbContext context, ILogger<SQLStudentRepository> logger)
         {
             this.logger = logger;
             this.context = context;
@@ -28,7 +28,7 @@ namespace StudentManagement.Models
         public Student Delete(int id)
         {
             Student student = context.Students.Find(id);
-            if (student!=null)
+            if (student != null)
             {
                 context.Students.Remove(student);
                 context.SaveChanges();

@@ -15,7 +15,7 @@ namespace StudentManagement.ViewModels
         }
 
 
-        [Display(Name ="角度Id")]
+        [Display(Name = "角度Id")]
         public string Id { get; set; }
 
         [Required]

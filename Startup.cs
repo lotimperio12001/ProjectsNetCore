@@ -164,7 +164,7 @@ namespace StudentManagement
 
             app.UseAuthorization();
 
-           
+
 
             app.UseDataInitializer();
 

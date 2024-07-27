@@ -19,7 +19,7 @@ namespace StudentManagement.Controllers
         private UserManager<ApplicationUser> userManager;
         private readonly ILogger logger;
 
-        public AdminController(RoleManager<IdentityRole> roleManager, 
+        public AdminController(RoleManager<IdentityRole> roleManager,
             UserManager<ApplicationUser> userManager,
             ILogger<AdminController> logger)
         {
@@ -387,7 +387,7 @@ namespace StudentManagement.Controllers
 
             var model = new List<RolesInUserViewModel>();
 
-            var roles =  await roleManager.Roles.ToListAsync();
+            var roles = await roleManager.Roles.ToListAsync();
             foreach (var role in roles)
             {
                 var rolesInUserViewModel = new RolesInUserViewModel
@@ -511,7 +511,7 @@ namespace StudentManagement.Controllers
 
             // 添加界面上选中的所有声明信息
             result = await userManager.AddClaimsAsync(user,
-                model.Cliams.Select(c => new Claim(c.ClaimType, c.IsSelected?"true":"false")));
+                model.Cliams.Select(c => new Claim(c.ClaimType, c.IsSelected ? "true" : "false")));
 
             if (!result.Succeeded)
             {
