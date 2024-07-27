@@ -34,7 +34,7 @@ namespace StudentManagement.Models
         {
             Student student = _studentList.FirstOrDefault(s => s.Id == id);
 
-            if (student!=null)
+            if (student != null)
             {
                 _studentList.Remove(student);
             }
@@ -57,7 +57,7 @@ namespace StudentManagement.Models
         {
             Student student = _studentList.FirstOrDefault(s => s.Id == updateStudent.Id);
 
-            if (student !=null)
+            if (student != null)
             {
                 student.Name = updateStudent.Name;
                 student.Email = updateStudent.Email;

@@ -523,7 +523,7 @@ namespace StudentManagement.Controllers
                 var user = await userManager.GetUserAsync(User);
                 //为用户添加密码
                 var result = await userManager.AddPasswordAsync(user, model.NewPassword);
-        
+
                 if (!result.Succeeded)
                 {
                     foreach (var error in result.Errors)
@@ -532,7 +532,7 @@ namespace StudentManagement.Controllers
                     }
                     return View();
                 }
-             
+
                 //刷新当前用户的Cookie
                 await signInManager.RefreshSignInAsync(user);
 

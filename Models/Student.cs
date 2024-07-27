@@ -29,10 +29,10 @@ namespace StudentManagement.Models
 
 
 
-     [NotMapped]
-     public string EncryptedId { get; set; }
+        [NotMapped]
+        public string EncryptedId { get; set; }
 
-        
+
 
 
     }

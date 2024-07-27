@@ -6,7 +6,7 @@ namespace StudentManagement.ViewModels
     {
 
         [Required]
-        [Display(Name ="角色")]
+        [Display(Name = "角色")]
         public string RoleName { get; set; }
 
     }

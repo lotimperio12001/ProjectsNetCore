@@ -61,7 +61,7 @@ namespace StudentManagement.Data
                         UserName = "ltm@ddxc.org",
                         Email = "ltm@ddxc.org",
                         EmailConfirmed = true,
-                        City = "成都",                       
+                        City = "成都",
                     };
 
                     var identityResult = userManager.CreateAsync(user, "bb123456").GetAwaiter().GetResult();
@@ -103,7 +103,7 @@ namespace StudentManagement.Data
                         ClaimValue = "Delete Role"
 
                     });
-                    
+
                     userclaims.Add(new IdentityUserClaim<string>
                     {
                         UserId = user.Id,
@@ -119,18 +119,18 @@ namespace StudentManagement.Data
 
 
 
-               
-
-#endregion 初始化用户
-            }
 
 
-            else
-            {
-                System.Console.WriteLine("无需创建种子数据...");
-            }
-        
-        return builder;
+                    #endregion 初始化用户
+                }
+
+
+                else
+                {
+                    System.Console.WriteLine("无需创建种子数据...");
+                }
+
+                return builder;
             }
         }
     }

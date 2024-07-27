@@ -7,26 +7,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace StudentManagement.Models
 {
-    public class AppDbContext:IdentityDbContext<ApplicationUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        public  DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             foreach (var foreignKey in modelBuilder.Model.GetEntityTypes().SelectMany(
-                e=>e.GetForeignKeys()             
+                e => e.GetForeignKeys()
                 ))
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
 
             }
 
-         // modelBuilder.Seed();
+            // modelBuilder.Seed();
         }
     }
 }

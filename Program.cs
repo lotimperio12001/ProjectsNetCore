@@ -31,8 +31,8 @@ namespace StudentManagement
 
 
                 }
-                
-                
+
+
                 )
             .UseStartup<Startup>();
     }

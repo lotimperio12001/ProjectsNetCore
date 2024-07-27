@@ -8,7 +8,7 @@ namespace StudentManagement.Models
 {
     public enum ClassNameEnum
     {
-        [Display(Name ="未分配")]
+        [Display(Name = "未分配")]
         None,
         [Display(Name = "一年级")]
         FirstGrade,

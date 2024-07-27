@@ -19,14 +19,14 @@ namespace StudentManagement.ViewModels
 
         public string Id { get; set; }
         [Required]
-        public string UserName { get; set;}
+        public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
         [ValidEmailDomain(allowedDomain: "52abp.com", ErrorMessage = "电子邮件后缀必须是52abp.com")]
         public string Email { get; set; }
 
-        public  IList<string> Roles{ get; set; }
+        public IList<string> Roles { get; set; }
 
         public IList<Claim> Claims { get; set; }
 
